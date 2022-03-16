@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List Home Page</h1>
+    <!-- This is going to bring in our base.html file. -->
+    {% extends 'base.html' %}
+
+    <!-- Stuff inside the block content block is unique to this page.  -->
+    {% block content %}
+        <h1>Todo List Home Page</h1>
+    {% endblock %}
 </body>
 </html>
