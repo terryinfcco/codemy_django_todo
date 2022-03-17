@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import List
 
 # Create your views here.
 
@@ -6,7 +7,8 @@ from django.shortcuts import render
 # to our html pages.
 
 def home(request):
-    return render(request, 'home.html', {})
+    all_items = List.objects.all 
+    return render(request, 'home.html', {'all_items':all_items})
 
 def about(request):
     # Call using full name
