@@ -10,6 +10,7 @@ class List(models.Model):
     item = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)
 
-    # This is important for the admin page.
+    # This is important for the admin page. Shows item name rather than list object(1), etc.
+    # Could add multiple fields to the display in the admin page.
     def __str__(self):
         return self.item
