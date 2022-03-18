@@ -7,8 +7,17 @@ from .forms import ListForm
 # to our html pages.
 
 def home(request):
-    all_items = List.objects.all 
-    return render(request, 'home.html', {'all_items':all_items})
+
+    if request.method == 'POST':
+        form = ListForm(request.POST or None)
+
+        if form.is_valid():
+            form.save()
+            all_items = List.objects.all 
+            return render(request, 'home.html', {'all_items':all_items})
+    else:
+        all_items = List.objects.all 
+        return render(request, 'home.html', {'all_items':all_items})
 
 def about(request):
     # Call using full name
