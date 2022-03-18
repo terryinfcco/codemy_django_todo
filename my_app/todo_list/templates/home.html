@@ -15,6 +15,17 @@
     {% block content %}
         <h1>Todo List Home Page</h1>
         
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    </button>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+        
         {% if all_items %}
         <table class="table table-bordered">
             {% for things in all_items %}

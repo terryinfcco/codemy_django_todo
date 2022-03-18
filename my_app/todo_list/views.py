@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import List
 from .forms import ListForm
+from django.contrib import messages
 # Create your views here.
 
 # The python dictionary which is the last parameter in the render can be used to pass data
@@ -14,6 +15,7 @@ def home(request):
         if form.is_valid():
             form.save()
             all_items = List.objects.all 
+            messages.success(request, ('Item Has Been Added to List'))
             return render(request, 'home.html', {'all_items':all_items})
     else:
         all_items = List.objects.all 
