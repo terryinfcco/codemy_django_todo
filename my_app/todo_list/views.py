@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import List
 from .forms import ListForm
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+
 # Create your views here.
 
 # The python dictionary which is the last parameter in the render can be used to pass data
@@ -33,3 +35,9 @@ def about(request):
     # Create the dictionary seperately - good for readability. 
     context = {'first_name': 'Terry', 'last_name': 'Dutcher'}
     return render(request, 'about.html', context)
+
+def delete(request, list_id):
+    item = List.objects.get(pk=list_id)
+    item.delete()
+    messages.success(request, ('Item Has Been Deleted'))
+    return redirect('home')
