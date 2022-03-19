@@ -57,13 +57,15 @@ def uncross(request, list_id):
 def edit(request, list_id):
 
     if request.method == 'POST':
-        form = ListForm(request.POST or None)
+        item = List.objects.get(pk=list_id)
+
+        form = ListForm(request.POST or None, instance=item)
 
         if form.is_valid():
             form.save()
             all_items = List.objects.all 
             messages.success(request, ('Item Has Been Edited!'))
-            return render(request, 'edit.html', {'all_items':all_items})
+            return redirect('home')
     else:
         item = List.objects.get(pk=list_id) 
         return render(request, 'edit.html', {'item':item})
